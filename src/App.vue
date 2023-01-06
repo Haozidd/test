@@ -2,7 +2,7 @@
   <div id="todoList">
     <Header/>
     <List/>
-<!--    <Footer/>-->
+    <Footer/>
   </div>
 </template>
 

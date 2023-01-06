@@ -14,12 +14,12 @@ input{
   position: relative;
   top:3%;
   display: block;
-  width: 80%;
+  width: 90%;
   height: 10%;
   margin: 10px auto 20px;
   outline: none;
   border:1px solid gray{
-  radius: 30px;
+  radius: 20px;
   };
 
   transition: 300ms;

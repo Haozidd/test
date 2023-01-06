@@ -2,12 +2,11 @@
   <ul id="list">
     <li class="item">
       <input type="checkbox" ><span>打代码</span>
-      <div id="buttonGroup">
+      <div class="buttonGroup">
         <button class="edit">编辑</button>
         <button class="delete">删除</button>
       </div>
     </li>
-
 
   </ul>
 
@@ -35,52 +34,52 @@
 }
 .item{
   display: flex;
+  padding-left: 5%;
+  flex-shrink: 0;
 
   width: 100%;
   height: 12%;
   align-items: center;
   transition: 200ms;
 
-
   border-bottom: 1px solid gray;
-}
-.item:hover{
-  background-color: wheat;
-}
-.item input{
-  margin-right: 10px;
-}
-li #buttonGroup{
-  margin-left: auto;
-  margin-right: 10px;
-}
-li button{
-  margin-left: 6px;
-  opacity: 0;
-}
-li:hover button:hover{
-  opacity: 0.7;
-}
-li:hover button:active{
-  opacity: 0.3;
-}
-li .edit{
-  color: white;
-  font-weight: bold;
-  font-size: 10px;
-  background-color: #9ad643;
-  border: 1px solid transparent;
-  border-radius: 2px;
-}
-li .delete{
-  color: white;
-  font-weight: bold;
-  font-size: 10px;
-  background-color: orangered;
-  border: 1px solid transparent;
-  border-radius: 2px;
-}
-li:hover button{
-  opacity: 1;
+
+  input{
+    margin-right: 10px;
+  }
+  .buttonGroup{
+    margin-left: auto;
+    margin-right: 10px;
+
+    button{
+      margin-left: 10px;
+      opacity: 1;
+      width: 50px;
+      height: 30px;
+      font-weight: bold;
+      font-size: 15px;
+      color: white;
+      border-radius: 5px;
+      border: 1px solid transparent;
+    }
+    .edit{
+      background-color: #9ad643;
+    }
+    .delete{
+      background-color: orangered;
+    }
+  }
+  &:hover{
+    background-color: wheat;
+    button{
+      opacity: 1;
+      &:hover{
+        opacity: 0.7;
+      }
+      &:active{
+        opacity: 0.3;
+      }
+    }
+  }
 }
 </style>

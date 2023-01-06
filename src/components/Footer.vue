@@ -17,11 +17,12 @@
     width: 90%;
     height: 10%;
     display: flex;
-    margin: 5rem auto 0;
+    margin: 5px auto 0;
     align-items: center;
+    padding-left: 5%;
   }
   input{
-    margin-right: 10rem;
+    margin-right: 10px;
   }
 
 </style>
