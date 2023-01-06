@@ -14,7 +14,6 @@
 </template>
 
 <script>
-let a =2;
 </script>
 
 
