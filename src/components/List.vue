@@ -14,7 +14,7 @@
 </template>
 
 <script>
-let a =2
+let a =2;
 </script>
 
 
