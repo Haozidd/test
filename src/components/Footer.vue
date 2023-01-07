@@ -1,6 +1,9 @@
 <template>
   <div id="footer">
-    <input type="checkbox" name="allSelected" id="allSelected"><span>已完成0 / 全部 3</span>
+<!--    <input type="checkbox" @change="handleAll">-->
+    <input type="checkbox" v-model="isAll">
+    <span> 已完成 {{doneTotal}} / 全部 {{todos.length}} </span>
+<!--    <button @click="triggerEmit">你好大笨蛋11111 </button>-->
   </div>
 
 
@@ -8,7 +11,32 @@
 
 
 <script>
-
+  export default {
+    name:'MyFooter',
+    props:['todos','checkAll'],
+    computed:{
+      total(){
+        return this.todos.length
+      },
+      doneTotal(){
+        // return this.todos.filter(todo=>todo.done === true).length
+        return this.todos.reduce( (pre,todo) => pre+(todo.done?1:0) , 0 )
+      },
+      isAll:{
+        get(){
+          return this.total === this.doneTotal && this.total>0
+        },
+        set(value){
+          this.checkAll(value)
+        }
+      }
+    },
+    methods:{
+      triggerEmit(){
+        this.$emit('triggerEmit',this.total,this.doneTotal)
+      }
+    }
+  }
 </script>
 
 

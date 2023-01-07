@@ -1,15 +1,18 @@
 <template>
   <div id="todoList">
-    <Header :addTodo="addTodo" />
-    <List :todos="todos" :checkTodo="checkTodo" :checkDel="checkDel"/>
-    <Footer/>
+    <Header @addTodo="addTodo" />
+    <List :todos="todos" :checkTodo="checkTodo" @handleEdit="handleEdit" @handleBlur="handleBlur"/>
+    <Footer :todos="todos" :checkAll="checkAll" @triggerEmit="triggerEmit"
+    />
   </div>
 </template>
 
 <script>
+import pubsub from 'pubsub-js'
 import Header from './components/Header'
 import List from './components/List'
 import Footer from './components/Footer'
+import {nanoid} from "nanoid";
 
 
 export default {
@@ -22,9 +25,10 @@ export default {
   data(){
     return{
       todos:[
-        {id:'001',title:'抽烟',done:true},
-        {id:'002',title:'喝酒',done:false},
-        {id:'003',title:'开车',done:true}
+        {id:nanoid(),title:'1',done:false},
+        {id:nanoid(),title:'2',done:false},
+        {id:nanoid(),title:'3',done:false},
+        {id:nanoid(),title:'4',done:false},
       ]
     }
   },
@@ -39,7 +43,46 @@ export default {
     },
     checkDel(id){
       this.todos = this.todos.filter(todo => todo.id !== id)
+    },
+    checkAll(checked){
+      if (checked ===true){
+        this.todos.forEach(todo=>todo.done=true)
+      }else {
+        this.todos.forEach(todo=>todo.done=false)
+      }
+    },
+    triggerEmit(total,total2) {
+      console.log('trigger',total,total2)
+    },
+    handleEdit(id){
+      this.todos.forEach(todo=>{
+        if (todo.id===id){
+          if (todo.hasOwnProperty('isEdit')){
+            todo.isEdit=true;
+          }else {
+            this.$set(todo,'isEdit',true)
+          }
+
+        }
+      })
+    },
+    handleBlur(id,value){
+        this.todos.forEach(todo=>{
+          if (todo.id===id){
+          todo.isEdit = false
+          todo.title=value
+          }
+        })
     }
+  },
+  mounted() {
+    this.$bus.$on('checkDel',this.checkDel)
+    // this.pid=pubsub.subscribe('checkDel',this.checkDel)
+  },
+  beforeDestroy() {
+    this.$bus.$off('checkDel')
+    // pubsub.unsubscribe(this.pid)
+
   }
 }
 </script >

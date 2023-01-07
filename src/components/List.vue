@@ -6,9 +6,19 @@
           :checked="todoObj.done"
           @change="handleCheck(todoObj.id)"
       >
-      <span>{{todoObj.title}}</span>
+      <span v-show="!todoObj.isEdit">{{todoObj.title}}</span>
+      <input v-show="todoObj.isEdit"
+             type="text"
+             :value="todoObj.title"
+             @blur="handleBlur(todoObj.id,$event.target.value)"
+             @keydown.enter="$event.target.blur()"
+             :ref="todoObj.id"
+      >
       <div class="buttonGroup">
-        <button class="edit">编辑</button>
+        <button
+            class="edit"
+            @click="handleEdit(todoObj.id)"
+        >编辑</button>
         <button class="delete" @click="handleDel(todoObj.id)">删除</button>
       </div>
     </li>
@@ -18,17 +28,28 @@
 </template>
 
 <script>
+import pubsub from "pubsub-js";
 export default {
   name:'MyList',
-  props:['todos','checkTodo','checkDel'],
+  props:['todos','checkTodo'],
   methods:{
     handleCheck(id){
       this.checkTodo(id);
     },
     handleDel(id){
       if(confirm('confirm delete?')){
-        this.checkDel(id);
+        this.$bus.$emit('checkDel',id)
+        // pubsub.publish('checkDel',id)
       }
+    },
+    handleEdit(id){
+      this.$emit('handleEdit',id)
+      this.$nextTick(function(){
+        this.$refs[id][0].focus()
+      })
+    },
+    handleBlur(id,value){
+      this.$emit('handleBlur',id,value)
     }
   }
 }
