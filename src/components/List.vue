@@ -1,10 +1,15 @@
 <template>
   <ul id="list">
-    <li class="item">
-      <input type="checkbox" ><span>打代码</span>
+    <li class="item" v-for="todoObj in todos" :key="todoObj.id">
+      <input
+          type="checkbox"
+          :checked="todoObj.done"
+          @change="handleCheck(todoObj.id)"
+      >
+      <span>{{todoObj.title}}</span>
       <div class="buttonGroup">
         <button class="edit">编辑</button>
-        <button class="delete">删除</button>
+        <button class="delete" @click="handleDel(todoObj.id)">删除</button>
       </div>
     </li>
 
@@ -13,6 +18,20 @@
 </template>
 
 <script>
+export default {
+  name:'MyList',
+  props:['todos','checkTodo','checkDel'],
+  methods:{
+    handleCheck(id){
+      this.checkTodo(id);
+    },
+    handleDel(id){
+      if(confirm('confirm delete?')){
+        this.checkDel(id);
+      }
+    }
+  }
+}
 </script>
 
 
@@ -40,7 +59,7 @@
   width: 100%;
   height: 12%;
   align-items: center;
-  transition: 200ms;
+  transition: 100ms;
 
   border-bottom: 1px solid gray;
 
@@ -51,9 +70,11 @@
     margin-left: auto;
     margin-right: 10px;
 
+
     button{
+      transition:100ms;
       margin-left: 10px;
-      opacity: 1;
+      opacity: 0;
       width: 50px;
       height: 30px;
       font-weight: bold;
@@ -61,6 +82,7 @@
       color: white;
       border-radius: 5px;
       border: 1px solid transparent;
+
     }
     .edit{
       background-color: #9ad643;

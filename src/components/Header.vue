@@ -1,9 +1,32 @@
 <template>
-    <input type="text" placeholder="input your mission" autofocus>
+    <input type="text" placeholder="input your mission" autofocus @keyup.enter="add" v-model="title">
 </template>
 
 
 <script>
+import {nanoid} from 'nanoid'
+export default {
+  name:'MyHeader',
+  props:['addTodo'],
+  data(){
+    return{
+      title:''
+    }
+  },
+  methods:{
+    add(e){
+      if (!this.title.trim()) return alert('content not allow NULL');
+      const todoObj = {
+        id:nanoid(),
+        title:this.title,
+        done:false
+      }
+      this.addTodo(todoObj)
+      this.title=''
+    }
+
+  }
+}
 
 </script>
 

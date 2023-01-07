@@ -1,7 +1,7 @@
 <template>
   <div id="todoList">
-    <Header/>
-    <List/>
+    <Header :addTodo="addTodo" />
+    <List :todos="todos" :checkTodo="checkTodo" :checkDel="checkDel"/>
     <Footer/>
   </div>
 </template>
@@ -19,6 +19,28 @@ export default {
     List,
     Footer
   },
+  data(){
+    return{
+      todos:[
+        {id:'001',title:'抽烟',done:true},
+        {id:'002',title:'喝酒',done:false},
+        {id:'003',title:'开车',done:true}
+      ]
+    }
+  },
+  methods:{
+    addTodo(todoObj){
+      this.todos.unshift(todoObj)
+    },
+    checkTodo(id){
+      this.todos.forEach((todo)=>{
+          if (todo.id === id) todo.done =!todo.done
+      })
+    },
+    checkDel(id){
+      this.todos = this.todos.filter(todo => todo.id !== id)
+    }
+  }
 }
 </script >
 
