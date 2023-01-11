@@ -7,7 +7,6 @@
       <List v-show="isShow" key="2" :todos="todos" :checkTodo="checkTodo" @handleEdit="handleEdit" @handleBlur="handleBlur" />
       <Footer v-show="isShow" key="3" :todos="todos" :checkAll="checkAll" @triggerEmit="triggerEmit" />
     </transition-group>
-
   </div>
 </template>
 
