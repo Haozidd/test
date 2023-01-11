@@ -123,7 +123,7 @@ body{
   border: 1px solid gray;
   border-radius: 10px;
   background-color: white;
-  button{
+  >button{
     width: 100%;
     height: 5%;
     flex-shrink: 0;
