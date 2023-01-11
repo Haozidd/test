@@ -1,9 +1,10 @@
 <template>
+
   <div id="todoList">
-    <Header @addTodo="addTodo" />
-    <List :todos="todos" :checkTodo="checkTodo" @handleEdit="handleEdit" @handleBlur="handleBlur"/>
-    <Footer :todos="todos" :checkAll="checkAll" @triggerEmit="triggerEmit"
-    />
+      <button @click="isShow= !isShow">点击显示/隐藏</button>
+      <Header v-show="isShow" @addTodo="addTodo"/>
+      <List v-show="isShow" :todos="todos" :checkTodo="checkTodo" @handleEdit="handleEdit" @handleBlur="handleBlur" />
+      <Footer v-show="isShow" :todos="todos" :checkAll="checkAll" @triggerEmit="triggerEmit" />
   </div>
 </template>
 
@@ -24,6 +25,7 @@ export default {
   },
   data(){
     return{
+      isShow:true,
       todos:[
         {id:nanoid(),title:'1',done:false},
         {id:nanoid(),title:'2',done:false},
@@ -108,7 +110,8 @@ body{
 }
 #todoList{
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
+
 
 
   position: relative;
@@ -120,10 +123,18 @@ body{
   border: 1px solid gray;
   border-radius: 10px;
   background-color: white;
+  button{
+    width: 100%;
+    height: 5%;
+    flex-shrink: 0;
+  }
+
 }
-#test{
-  //align-self: flex-end;
-}
+
+
+
+
+
 
 
 

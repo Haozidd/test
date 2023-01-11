@@ -42,8 +42,11 @@ input{
   height: 10%;
   margin: 10px auto 20px;
   outline: none;
-  border:1px solid gray{
-  radius: 20px;
+  border:{
+    width: 1px;
+    style:solid;
+    color: gray;
+    radius: 20px;
   };
 
   transition: 300ms;

@@ -1,4 +1,7 @@
 <template>
+<!--  <transition>-->
+
+<!--  </transition>-->
   <ul id="list">
     <li class="item" v-for="todoObj in todos" :key="todoObj.id">
       <input
@@ -24,6 +27,7 @@
     </li>
 
   </ul>
+
 
 </template>
 
@@ -66,8 +70,8 @@ export default {
   padding: 0;
 
   width: 90%;
-  height: 70%;
-  margin: auto;
+  height: 60%;
+  margin: 20px auto 0;
   border: 1px solid gray;
   border-radius: 3px;
 
@@ -123,6 +127,19 @@ export default {
         opacity: 0.3;
       }
     }
+  }
+}
+
+.v-enter-active{
+  animation: testAnimation 1s;
+}
+
+@keyframes testAnimation {
+  from{
+    transform: translateX(-100%);
+  }
+  to{
+    transform: translateX(0%);
   }
 }
 </style>
