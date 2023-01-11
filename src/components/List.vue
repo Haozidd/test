@@ -1,5 +1,5 @@
 <template>
-  <transition>
+<!--  <transition>-->
     <ul id="list">
       <li class="item" v-for="todoObj in todos" :key="todoObj.id">
         <input
@@ -25,7 +25,7 @@
       </li>
 
     </ul>
-  </transition>
+<!--  </transition>-->
 
 
 
@@ -130,16 +130,6 @@ export default {
   }
 }
 
-.v-enter-active{
-  animation: testAnimation 1s;
-}
 
-@keyframes testAnimation {
-  from{
-    transform: translateX(-190%);
-  }
-  to{
-    transform: translateX(0%);
-  }
-}
+
 </style>

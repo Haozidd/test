@@ -2,9 +2,12 @@
 
   <div id="todoList">
       <button @click="isShow= !isShow">点击显示/隐藏</button>
-      <Header v-show="isShow" @addTodo="addTodo"/>
-      <List v-show="isShow" :todos="todos" :checkTodo="checkTodo" @handleEdit="handleEdit" @handleBlur="handleBlur" />
-      <Footer v-show="isShow" :todos="todos" :checkAll="checkAll" @triggerEmit="triggerEmit" />
+    <transition-group appear>
+      <Header v-show="isShow" @addTodo="addTodo" key="1"/>
+      <List v-show="isShow" key="2" :todos="todos" :checkTodo="checkTodo" @handleEdit="handleEdit" @handleBlur="handleBlur" />
+      <Footer v-show="isShow" key="3" :todos="todos" :checkAll="checkAll" @triggerEmit="triggerEmit" />
+    </transition-group>
+
   </div>
 </template>
 
@@ -111,9 +114,6 @@ body{
 #todoList{
   display: flex;
   flex-flow: column wrap;
-
-
-
   position: relative;
   margin: auto;
   height: 80% ;
@@ -128,7 +128,33 @@ body{
     height: 5%;
     flex-shrink: 0;
   }
-
+  >span{
+    position: relative;
+    width: 100%;
+    height: 90%;
+  }
+}
+.v-enter-active{
+  animation: testAnimation-in 200ms;
+}
+.v-leave-active{
+  animation: testAnimation-out 200ms;
+}
+@keyframes testAnimation-in {
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+@keyframes testAnimation-out {
+  from{
+    opacity: 1;
+  }
+  to{
+    opacity: 0;
+  }
 }
 
 

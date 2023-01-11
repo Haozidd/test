@@ -49,7 +49,6 @@ input{
     radius: 20px;
   };
 
-  transition: 300ms;
   font-size: 100%;
   &:focus{
     box-shadow: 4px 4px 20px 2px skyblue;
