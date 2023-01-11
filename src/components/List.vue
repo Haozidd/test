@@ -1,32 +1,32 @@
 <template>
-<!--  <transition>-->
+  <transition>
+    <ul id="list">
+      <li class="item" v-for="todoObj in todos" :key="todoObj.id">
+        <input
+            type="checkbox"
+            :checked="todoObj.done"
+            @change="handleCheck(todoObj.id)"
+        >
+        <span v-show="!todoObj.isEdit">{{todoObj.title}}</span>
+        <input v-show="todoObj.isEdit"
+               type="text"
+               :value="todoObj.title"
+               @blur="handleBlur(todoObj.id,$event.target.value)"
+               @keydown.enter="$event.target.blur()"
+               :ref="todoObj.id"
+        >
+        <div class="buttonGroup">
+          <button
+              class="edit"
+              @click="handleEdit(todoObj.id)"
+          >编辑</button>
+          <button class="delete" @click="handleDel(todoObj.id)">删除</button>
+        </div>
+      </li>
 
-<!--  </transition>-->
-  <ul id="list">
-    <li class="item" v-for="todoObj in todos" :key="todoObj.id">
-      <input
-          type="checkbox"
-          :checked="todoObj.done"
-          @change="handleCheck(todoObj.id)"
-      >
-      <span v-show="!todoObj.isEdit">{{todoObj.title}}</span>
-      <input v-show="todoObj.isEdit"
-             type="text"
-             :value="todoObj.title"
-             @blur="handleBlur(todoObj.id,$event.target.value)"
-             @keydown.enter="$event.target.blur()"
-             :ref="todoObj.id"
-      >
-      <div class="buttonGroup">
-        <button
-            class="edit"
-            @click="handleEdit(todoObj.id)"
-        >编辑</button>
-        <button class="delete" @click="handleDel(todoObj.id)">删除</button>
-      </div>
-    </li>
+    </ul>
+  </transition>
 
-  </ul>
 
 
 </template>
@@ -136,7 +136,7 @@ export default {
 
 @keyframes testAnimation {
   from{
-    transform: translateX(-100%);
+    transform: translateX(-190%);
   }
   to{
     transform: translateX(0%);
