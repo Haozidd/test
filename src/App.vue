@@ -7,6 +7,7 @@
       <List v-show="isShow" key="2" :todos="todos" :checkTodo="checkTodo" @handleEdit="handleEdit" @handleBlur="handleBlur" />
       <Footer v-show="isShow" key="3" :todos="todos" :checkAll="checkAll" @triggerEmit="triggerEmit" />
     </transition-group>
+    <Test/>
   </div>
 
 </template>
@@ -17,6 +18,7 @@ import Header from './components/Header'
 import List from './components/List'
 import Footer from './components/Footer'
 import {nanoid} from "nanoid";
+import Test from "@/components/Test";
 
 
 export default {
@@ -24,7 +26,8 @@ export default {
   components: {
     Header,
     List,
-    Footer
+    Footer,
+    Test
   },
   data(){
     return{
