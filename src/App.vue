@@ -129,6 +129,7 @@ body{
     margin: 0 auto;
 
 
+
     flex-shrink: 0;
   }
   >span{
