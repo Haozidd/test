@@ -8,6 +8,7 @@
       <Footer v-show="isShow" key="3" :todos="todos" :checkAll="checkAll" @triggerEmit="triggerEmit" />
     </transition-group>
   </div>
+
 </template>
 
 <script>
