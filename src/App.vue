@@ -124,8 +124,11 @@ body{
   border-radius: 10px;
   background-color: white;
   >button{
-    width: 100%;
+    width: 90%;
     height: 5%;
+    margin: 0 auto;
+
+
     flex-shrink: 0;
   }
   >span{
